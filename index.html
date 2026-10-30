@@ -346,6 +346,32 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .ai-note p { margin: 0; color: var(--ink); }
 @media (max-width: 560px) { .ai-note { flex-direction: column; align-items: flex-start; } }
 
+/* AI QA band */
+.ai-band { position: relative; background: var(--band); color: var(--band-ink); margin-top: 96px; padding-block: 76px; overflow: hidden; isolation: isolate; }
+.ai-band::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; opacity: .5;
+  background-image: linear-gradient(var(--band-line) 1px, transparent 1px), linear-gradient(90deg, var(--band-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(ellipse 60% 80% at 85% 10%, #000 5%, transparent 70%);
+  mask-image: radial-gradient(ellipse 60% 80% at 85% 10%, #000 5%, transparent 70%);
+}
+@media (max-width: 640px) { .ai-band { margin-top: 64px; padding-block: 56px; } }
+.ai-band .kicker { color: var(--band-accent); }
+.ai-band .sec-head h2 { color: var(--band-ink); }
+.ai-band .sec-head p { color: var(--band-muted); }
+.flow { list-style: none; margin: 0 0 22px; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 8px; }
+.flow li { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 13px; color: var(--band-ink); }
+.flow li { padding: 9px 13px; border-radius: 9px; border: 1px solid var(--band-line); background: var(--band-fill); }
+.flow li + li { margin-left: 26px; position: relative; }
+.flow li + li::after { content: "\2192"; position: absolute; left: -22px; top: 50%; transform: translateY(-50%); color: var(--band-muted); }
+.flow li.pass { color: var(--band-pass); border-color: color-mix(in srgb, var(--band-pass) 45%, transparent); background: color-mix(in srgb, var(--band-pass) 12%, transparent); }
+.ai-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 600px) { .ai-grid { grid-template-columns: minmax(0, 1fr); } }
+.ai-card { border: 1px solid var(--band-line); background: var(--band-fill); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.ai-tag { align-self: flex-start; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 9px; border-radius: 6px; background: var(--hi); color: var(--hi-ink); }
+.ai-card h3 { font-size: 20px; font-weight: 800; letter-spacing: -0.01em; color: var(--band-ink); line-height: 1.25; }
+.ai-card p { margin: 0; color: var(--band-muted); font-size: 15.5px; }
+
 /* Skills */
 .skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px 36px; }
 @media (max-width: 900px) { .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -399,6 +425,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       <div class="nav-links">
         <a href="#experience">Experience</a>
         <a href="#products">Products</a>
+        <a href="#ai-qa">AI QA</a>
         <a href="#open-source">Open source</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
@@ -433,6 +460,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
           <li>Docker</li>
           <li>Appium</li>
           <li>Claude Code</li>
+          <li>Playwright MCP</li>
         </ul>
         <div class="ctas">
           <a class="btn btn-hi" href="Shohanur_Rahman_Shohan_CV.pdf" target="_blank" rel="noopener" data-cv>
@@ -517,7 +545,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
               <li><b>StorePulse suite.</b> Own release quality for CartPilot (SaaS), TryAura (AI try-on plugin) and StoreGrowth, covering AI responses, plan and billing rules, dashboards and data integrity.</li>
               <li><b>Shared framework.</b> Maintain the Playwright + TypeScript Page Object Model behind suites for Dokan, StorePulse, FlyCRM, weDocs and WP ERP.</li>
               <li><b>Fast CI.</b> E2E sharded across 12 parallel GitHub Actions workers, with Docker, caching and HTML quality reports.</li>
-              <li><b>AI in QA.</b> Claude Skills and Claude Code workflows for test design, exploratory runs and bug reports.</li>
+              <li><b>AI QA system.</b> Built Claude Code agents, skills and guardrail hooks that plan risk-based cases, test in a real browser through Playwright MCP and file bugs with screenshot evidence.</li>
               <li><b>API &amp; performance.</b> OpenAPI/Swagger contract checks, plus k6 and Playwright load tests before release.</li>
             </ul>
           </div>
@@ -632,6 +660,44 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     </div>
   </section>
 
+  <section class="ai-band" id="ai-qa" aria-labelledby="ai-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <div><span class="kicker">AI in QA</span><h2 id="ai-title">My AI QA system</h2></div>
+        <p>Built on Claude Code. It handles the repetitive parts of testing, so my time goes to the judgment calls.</p>
+      </div>
+      <ol class="flow" aria-label="How a test request moves through the system">
+        <li>Test request</li>
+        <li>Product QA agent</li>
+        <li>Risk-based test cases</li>
+        <li>Real browser via Playwright MCP</li>
+        <li class="pass">Bug report with evidence</li>
+      </ol>
+      <div class="ai-grid">
+        <article class="ai-card">
+          <span class="ai-tag">Agents &amp; skills</span>
+          <h3>An agent for each product</h3>
+          <p>QA agents and skills for Dokan, CartPilot, FlyCRM, StoreGrowth, weDocs and WP ERP, all built on one shared testing method.</p>
+        </article>
+        <article class="ai-card">
+          <span class="ai-tag">Playwright MCP</span>
+          <h3>Testing in a real browser</h3>
+          <p>Manual checks run in a real browser through Playwright MCP. Automation is written in Playwright + TypeScript, and plugin release builds get tested too.</p>
+        </article>
+        <article class="ai-card">
+          <span class="ai-tag">Evidence</span>
+          <h3>Bugs you can reproduce</h3>
+          <p>Each bug is reproduced first, then reported with an annotated screenshot for every step in a standard format.</p>
+        </article>
+        <article class="ai-card">
+          <span class="ai-tag">Guardrail hooks</span>
+          <h3>Rules the agents can’t skip</h3>
+          <p>New test suites are audited for missed cases, a run doesn’t end until every case has a verdict, and nothing reaches GitHub without my approval. Most hooks have their own tests.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="section" id="open-source" aria-labelledby="oss-title">
     <div class="wrap">
       <div class="sec-head">
@@ -671,10 +737,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
         <li class="stage"><span class="node">03</span><h3>Run fast in CI</h3><p>Suites run on every change, sharded across 12 workers with Docker and HTML reports.</p></li>
         <li class="stage"><span class="node">04</span><h3>Sign off with evidence</h3><p>Release calls rest on test reports, triaged defects and root-cause analysis.</p></li>
       </ol>
-      <div class="ai-note">
-        <span class="tag">AI in my workflow</span>
-        <p>Claude Code and custom Claude Skills help me draft test cases, drive exploratory runs and write clear bug reports.</p>
-      </div>
     </div>
   </section>
 
@@ -689,7 +751,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
         <div class="skill"><h3>API &amp; performance</h3><ul class="chips"><li>REST APIs</li><li>Postman</li><li>Swagger / OpenAPI</li><li>k6</li><li>JMeter</li></ul></div>
         <div class="skill"><h3>CI/CD</h3><ul class="chips"><li>GitHub Actions</li><li>Docker</li><li>Git</li><li>Node.js</li><li>Sharded runs</li></ul></div>
         <div class="skill"><h3>QA practice</h3><ul class="chips"><li>Test strategy</li><li>Risk-based testing</li><li>STLC / SDLC</li><li>Root-cause analysis</li><li>Release sign-off</li></ul></div>
-        <div class="skill"><h3>AI in QA</h3><ul class="chips"><li>Claude Code</li><li>Claude Skills</li><li>AI output validation</li></ul></div>
+        <div class="skill"><h3>AI in QA</h3><ul class="chips"><li>Claude Code</li><li>Custom agents &amp; skills</li><li>Guardrail hooks</li><li>Playwright MCP</li><li>AI output validation</li></ul></div>
         <div class="skill"><h3>Process</h3><ul class="chips"><li>JIRA</li><li>TestRail</li><li>Agile / Scrum</li></ul></div>
       </div>
     </div>
