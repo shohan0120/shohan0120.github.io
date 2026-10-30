@@ -359,12 +359,16 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .ai-band .kicker { color: var(--band-accent); }
 .ai-band .sec-head h2 { color: var(--band-ink); }
 .ai-band .sec-head p { color: var(--band-muted); }
-.flow { list-style: none; margin: 0 0 22px; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 8px; }
-.flow li { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 13px; color: var(--band-ink); }
-.flow li { padding: 9px 13px; border-radius: 9px; border: 1px solid var(--band-line); background: var(--band-fill); }
-.flow li + li { margin-left: 26px; position: relative; }
-.flow li + li::after { content: "\2192"; position: absolute; left: -22px; top: 50%; transform: translateY(-50%); color: var(--band-muted); }
+/* Request-to-bug flow: one row of five equal steps on wide screens, a vertical list on narrow ones. */
+.flow { list-style: none; margin: 0 0 24px; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 30px; }
+.flow li { position: relative; display: flex; align-items: center; min-height: 56px; padding: 10px 14px; border-radius: 10px; border: 1px solid var(--band-line); background: var(--band-fill); font-family: var(--font-mono); font-size: 13px; line-height: 1.35; color: var(--band-ink); }
+.flow li + li::before { content: "\2192"; position: absolute; left: -22px; top: 50%; transform: translateY(-50%); font-family: var(--font-mono); color: var(--band-muted); }
 .flow li.pass { color: var(--band-pass); border-color: color-mix(in srgb, var(--band-pass) 45%, transparent); background: color-mix(in srgb, var(--band-pass) 12%, transparent); }
+@media (max-width: 900px) {
+  .flow { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .flow li { min-height: 0; }
+  .flow li + li::before { content: "\2193"; left: 18px; top: -24px; transform: none; }
+}
 .ai-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 @media (max-width: 600px) { .ai-grid { grid-template-columns: minmax(0, 1fr); } }
 .ai-card { border: 1px solid var(--band-line); background: var(--band-fill); border-radius: 18px; padding: 22px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
@@ -541,12 +545,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
             <h3>QA Engineer</h3>
             <span class="org">weDevs</span>
             <ul class="checks">
-              <li><b>Dokan, the flagship.</b> Lead the full E2E and REST API automation suite: vendor onboarding, orders, checkout, payments, admin and Pro modules, plus mobile app testing.</li>
-              <li><b>StorePulse suite.</b> Own release quality for CartPilot (SaaS), TryAura (AI try-on plugin) and StoreGrowth, covering AI responses, plan and billing rules, dashboards and data integrity.</li>
-              <li><b>Shared framework.</b> Maintain the Playwright + TypeScript Page Object Model behind suites for Dokan, StorePulse, FlyCRM, weDocs and WP ERP.</li>
-              <li><b>Fast CI.</b> E2E sharded across 12 parallel GitHub Actions workers, with Docker, caching and HTML quality reports.</li>
-              <li><b>AI QA system.</b> Built Claude Code agents, skills and guardrail hooks that plan risk-based cases, test in a real browser through Playwright MCP and file bugs with screenshot evidence.</li>
-              <li><b>API &amp; performance.</b> OpenAPI/Swagger contract checks, plus k6 and Playwright load tests before release.</li>
+              <li>Lead end-to-end and REST API test automation for Dokan in Playwright and TypeScript, covering vendor onboarding, checkout, Stripe payments, admin and Pro modules, plus the Android app.</li>
+              <li>Own release testing for CartPilot (AI shopping assistant with a SaaS dashboard), TryAura and StoreGrowth, covering AI response quality, billing rules, dashboards and data integrity.</li>
+              <li>Maintain the shared Page Object Model framework used by the Dokan, StorePulse, FlyCRM, weDocs and WP ERP test suites, and migrated the WP ERP suite from Codeception to Playwright.</li>
+              <li>Shortened regression feedback by running the end-to-end suite on 12 parallel GitHub Actions workers, with Dockerized test environments and HTML reports.</li>
+              <li>Built AI-assisted testing workflows in Claude Code that draft test cases, run browser checks through Playwright MCP and prepare bug reports with screenshots for review.</li>
+              <li>Validate REST APIs against OpenAPI contracts and run k6 load tests before major releases.</li>
             </ul>
           </div>
         </article>
@@ -559,10 +563,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
             <h3>Software Quality Assurance Engineer</h3>
             <span class="org">Technohaven Company Ltd.</span>
             <ul class="checks">
-              <li><b>Frameworks from scratch.</b> Built Playwright + TypeScript frameworks with a Page Object Model and shared libraries reused across projects.</li>
-              <li><b>Manual to automated.</b> Cross-browser regression suites replaced manual passes on BEPZA, VATPROMPT and ILO-GIZ.</li>
-              <li><b>Full QA lifecycle.</b> Planning, test design, JIRA triage, root-cause analysis and release sign-off in Agile Scrum.</li>
-              <li><b>Load &amp; mobile.</b> JMeter load tests, Appium Android tests and team-wide Postman collections.</li>
+              <li>Built Playwright and TypeScript automation frameworks from scratch, with a Page Object Model and shared libraries reused across client projects.</li>
+              <li>Replaced manual regression passes with automated cross-browser suites for BEPZA Automation, VATPROMPT and the ILO-GIZ project.</li>
+              <li>Ran the full QA cycle in Agile Scrum: test planning, case design, execution, defect triage and root-cause analysis in JIRA, and release sign-off.</li>
+              <li>Load-tested key workflows with JMeter, tested Android apps with Appium and set up shared Postman collections for API testing.</li>
             </ul>
           </div>
         </article>
@@ -575,7 +579,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
             <h3>QA Intern, Functional Testing</h3>
             <span class="org">a1qa</span>
             <ul class="checks">
-              <li>Functional and regression testing for international web clients. Wrote test cases, supported API testing and tracked defects end to end.</li>
+              <li>Tested web applications for international clients under senior QA guidance: functional and regression testing, test cases written from requirements, and defects tracked to closure.</li>
             </ul>
           </div>
         </article>
