@@ -306,6 +306,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .prod p { margin: 0; color: var(--muted); font-size: 15.5px; line-height: 1.55; }
 .tests { margin-top: auto; padding-top: 14px; border-top: 1px dashed var(--line); font-size: 14.5px; font-weight: 600; color: var(--ink); line-height: 1.45; }
 .tests span { display: block; font-family: var(--font-mono); font-size: 11px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+/* The seventh card would sit alone on the last row, so on wider screens it takes the whole row and sets "What I test" beside its text. */
+@media (min-width: 621px) {
+  .prod.wide { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); column-gap: 32px; row-gap: 10px; align-content: start; }
+  .prod.wide > :not(.tests) { grid-column: 1; }
+  .prod.wide > .tests { grid-column: 2; grid-row: 1 / span 3; align-self: center; margin: 0; padding: 6px 0 6px 28px; border-top: 0; border-left: 1px dashed var(--line); }
+}
 
 /* Open source */
 .oss { display: grid; grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.6fr); gap: 20px; align-items: stretch; }
@@ -522,6 +528,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
         <a href="https://storepulse.co/plugins/tryaura/docs/" target="_blank" rel="noopener">TryAura</a>
         <a href="https://storepulse.co/plugins/storegrowth/" target="_blank" rel="noopener">StoreGrowth</a>
         <a href="https://flycrm.co/" target="_blank" rel="noopener">FlyCRM</a>
+        <a href="https://flyhr.co/" target="_blank" rel="noopener">FlyHR</a>
         <a href="https://wedocs.co/" target="_blank" rel="noopener">weDocs</a>
         <a href="https://wperp.com/" target="_blank" rel="noopener">WP ERP</a>
       </div>
@@ -659,6 +666,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
           <h3><a href="https://wperp.com/" target="_blank" rel="noopener">WP ERP</a></h3>
           <p>HR, CRM and accounting in one suite.</p>
           <div class="tests"><span>What I test</span>Playwright E2E and REST suite, migrated from Codeception</div>
+        </article>
+        <article class="prod wide">
+          <div class="tags"><span class="tag">HR</span></div>
+          <h3><a href="https://flyhr.co/" target="_blank" rel="noopener">FlyHR</a></h3>
+          <p>HR management for growing teams: employee records, leave policies and approvals, with payroll, attendance and recruitment modules.</p>
+          <div class="tests"><span>What I test</span>Employee records · leave rules · approvals</div>
         </article>
       </div>
     </div>
