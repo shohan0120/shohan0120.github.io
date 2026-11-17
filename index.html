@@ -233,10 +233,13 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   .metric:nth-child(3) { border-left: 0; }
   .metric:nth-child(n+3) { border-top: 1px solid var(--line); }
 }
-.logos { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 30px; padding-top: 34px; }
-.logos .label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); flex-basis: 100%; }
-.logos a { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 800; font-size: 20px; letter-spacing: -0.01em; color: var(--ink); opacity: .74; text-decoration: none; transition: opacity .15s ease, color .15s ease; }
-.logos a:hover { opacity: 1; color: var(--accent); }
+.logos { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding-top: 30px; }
+.logos .label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); flex-basis: 100%; margin-bottom: 2px; }
+/* Each product name links to its site, so it is drawn as a button: a bordered pill with an outbound arrow. */
+.logos a { display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px 7px 13px; border: 1px solid var(--line); border-radius: 999px; background: var(--card); box-shadow: 0 1px 2px rgba(6, 38, 54, 0.06); font-family: var(--font-display); font-weight: 700; font-size: 15px; line-height: 1.25; letter-spacing: -0.005em; color: var(--ink); text-decoration: none; transition: color .15s ease, border-color .15s ease, background-color .15s ease, transform .15s ease; }
+.logos a svg { width: 13px; height: 13px; flex: none; color: var(--muted); transition: color .15s ease, transform .15s ease; }
+.logos a:hover, .logos a:focus-visible { color: var(--accent); border-color: var(--accent); background: var(--accent-soft); transform: translateY(-1px); }
+.logos a:hover svg, .logos a:focus-visible svg { color: var(--accent); transform: translate(1px, -1px); }
 .flag { font-family: var(--font-mono); font-size: 10.5px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 7px; border-radius: 5px; background: var(--hi); color: var(--hi-ink); }
 
 /* Sections */
@@ -417,7 +420,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   html { scroll-behavior: auto; }
   .dot, .shard { animation: none; }
   .btn, .prod, .logos a, .pr { transition: none; }
-  .btn:hover, .prod:hover { transform: none; }
+  .btn:hover, .prod:hover, .logos a:hover, .logos a:hover svg { transform: none; }
 }
 </style>
 </head>
@@ -522,15 +525,15 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       </div>
       <div class="logos">
         <span class="label">Products I test</span>
-        <a href="https://dokan.co/" target="_blank" rel="noopener">Dokan <span class="flag">Flagship</span></a>
-        <a href="https://cartpilot.ai/" target="_blank" rel="noopener">CartPilot</a>
-        <a href="https://storepulse.co/" target="_blank" rel="noopener">StorePulse</a>
-        <a href="https://storepulse.co/plugins/tryaura/docs/" target="_blank" rel="noopener">TryAura</a>
-        <a href="https://storepulse.co/plugins/storegrowth/" target="_blank" rel="noopener">StoreGrowth</a>
-        <a href="https://flycrm.co/" target="_blank" rel="noopener">FlyCRM</a>
-        <a href="https://flyhr.co/" target="_blank" rel="noopener">FlyHR</a>
-        <a href="https://wedocs.co/" target="_blank" rel="noopener">weDocs</a>
-        <a href="https://wperp.com/" target="_blank" rel="noopener">WP ERP</a>
+        <a href="https://dokan.co/" target="_blank" rel="noopener">Dokan <span class="flag">Flagship</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>
+        <a href="https://cartpilot.ai/" target="_blank" rel="noopener">CartPilot<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>
+        <a href="https://storepulse.co/" target="_blank" rel="noopener">StorePulse<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>
+        <a href="https://storepulse.co/plugins/tryaura/docs/" target="_blank" rel="noopener">TryAura<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>
+        <a href="https://storepulse.co/plugins/storegrowth/" target="_blank" rel="noopener">StoreGrowth<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>
+        <a href="https://flycrm.co/" target="_blank" rel="noopener">FlyCRM<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>
+        <a href="https://flyhr.co/" target="_blank" rel="noopener">FlyHR<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>
+        <a href="https://wedocs.co/" target="_blank" rel="noopener">weDocs<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>
+        <a href="https://wperp.com/" target="_blank" rel="noopener">WP ERP<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"/><path d="M8 7h9v9"/></svg></a>
       </div>
     </div>
   </div>
